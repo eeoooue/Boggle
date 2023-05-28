@@ -1,7 +1,35 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
+}
+
+class BoggleDie {
+  int seed = 0;
+  BoggleDie(int pSeed) {
+    seed = pSeed;
+  }
+
+  List<String> getOptions() {
+    List<String> options = List.filled(6, "X");
+    options[0] = "A";
+    options[1] = "B";
+    options[2] = "C";
+    options[3] = "D";
+    options[4] = "E";
+    options[5] = "F";
+
+    return options;
+  }
+
+  String getText() {
+    Random rand = Random();
+    int i = rand.nextInt(6);
+
+    List<String> options = getOptions();
+    return options[i];
+  }
 }
 
 int getBoggleDie(int i) {
@@ -13,7 +41,9 @@ String getRandomBoggleFace() {
 }
 
 SizedBox getBoggleTile(int value) {
-  String faceText = getRandomBoggleFace();
+  BoggleDie die = BoggleDie(value);
+  // String faceText = getRandomBoggleFace();
+  String faceText = die.getText();
 
   return SizedBox(
     height: 90,
