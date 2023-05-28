@@ -210,9 +210,12 @@ class _MyAppState extends State<MyApp> {
         ),
         bottomNavigationBar: BottomNavigationBar(
             onTap: (value) => {
-                  setState(() {
-                    playGrid = getBoggleBox();
-                  })
+                  if (value == 0)
+                    {
+                      setState(() {
+                        playGrid = getBoggleBox();
+                      })
+                    }
                 },
             items: const [
               BottomNavigationBarItem(
