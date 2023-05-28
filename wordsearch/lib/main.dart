@@ -12,15 +12,74 @@ class BoggleDie {
   }
 
   List<String> getOptions() {
-    List<String> options = List.filled(6, "X");
-    options[0] = "A";
-    options[1] = "B";
-    options[2] = "C";
-    options[3] = "D";
-    options[4] = "E";
-    options[5] = "F";
+    switch (seed) {
+      case 0:
+        {
+          return ['A', 'A', 'E', 'E', 'G', 'N'];
+        }
+      case 1:
+        {
+          return ['A', 'B', 'B', 'J', 'O', 'O'];
+        }
+      case 2:
+        {
+          return ['A', 'C', 'H', 'O', 'P', 'S'];
+        }
+      case 3:
+        {
+          return ['A', 'F', 'F', 'K', 'P', 'S'];
+        }
+      case 4:
+        {
+          return ['A', 'O', 'O', 'T', 'T', 'W'];
+        }
+      case 5:
+        {
+          return ['C', 'I', 'M', 'O', 'T', 'U'];
+        }
+      case 6:
+        {
+          return ['D', 'E', 'I', 'L', 'R', 'X'];
+        }
+      case 7:
+        {
+          return ['D', 'E', 'L', 'R', 'V', 'Y'];
+        }
+      case 8:
+        {
+          return ['D', 'I', 'S', 'T', 'T', 'Y'];
+        }
+      case 9:
+        {
+          return ['E', 'E', 'G', 'H', 'N', 'W'];
+        }
+      case 10:
+        {
+          return ['E', 'E', 'I', 'N', 'S', 'U'];
+        }
+      case 11:
+        {
+          return ['E', 'H', 'R', 'T', 'V', 'W'];
+        }
+      case 12:
+        {
+          return ['E', 'I', 'O', 'S', 'S', 'T'];
+        }
+      case 13:
+        {
+          return ['E', 'L', 'R', 'T', 'T', 'Y'];
+        }
+      case 14:
+        {
+          return ['H', 'I', 'M', 'N', 'U', 'Qu'];
+        }
+      case 15:
+        {
+          return ['H', 'L', 'N', 'N', 'R', 'Z'];
+        }
+    }
 
-    return options;
+    return ['H', 'L', 'N', 'N', 'R', 'Z'];
   }
 
   String getText() {
@@ -49,12 +108,12 @@ SizedBox getBoggleTile(int value) {
     height: 90,
     width: 90,
     child: Card(
-      color: Colors.red,
+      color: Colors.blueAccent,
       child: Center(
           child: Text(
         faceText,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 42),
+        style: const TextStyle(fontSize: 45, color: Colors.white),
       )),
     ),
   );
@@ -73,21 +132,16 @@ Row getBoggleRow(List<int> values) {
 }
 
 SizedBox getBoggleBox() {
-  List<int> values0 = List.filled(4, 0);
-  List<int> values1 = List.filled(4, 0);
-  List<int> values2 = List.filled(4, 0);
-  List<int> values3 = List.filled(4, 0);
-
   return SizedBox(
     width: 360,
     height: 360,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        getBoggleRow(values0),
-        getBoggleRow(values1),
-        getBoggleRow(values2),
-        getBoggleRow(values3),
+        getBoggleRow([0, 1, 2, 3]),
+        getBoggleRow([4, 5, 6, 7]),
+        getBoggleRow([8, 9, 10, 11]),
+        getBoggleRow([12, 13, 14, 15]),
       ],
     ),
   );
@@ -116,7 +170,6 @@ class MyApp extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              color: const Color.fromARGB(255, 219, 219, 219),
               child: getBoggleBox(),
             ),
             const Text(
