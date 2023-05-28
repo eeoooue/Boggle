@@ -95,48 +95,58 @@ int getBoggleDie(int i) {
   return i;
 }
 
-SizedBox getBoggleTile(int value) {
+SizedBox getBoggleTile(int value, Random rand) {
   BoggleDie die = BoggleDie(value);
   String faceText = die.getText();
+  int rotations = rand.nextInt(4);
+
+  if (rand.nextInt(100) < 60) {
+    rotations = 0;
+  }
 
   return SizedBox(
     height: 90,
     width: 90,
-    child: Card(
-      color: Colors.blueAccent,
-      child: Center(
-          child: Text(
-        faceText,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 45, color: Colors.white),
-      )),
+    child: RotatedBox(
+      quarterTurns: rotations,
+      child: Card(
+        color: Colors.blueAccent,
+        child: Center(
+            child: Text(
+          faceText,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 45, color: Colors.white),
+        )),
+      ),
     ),
   );
 }
 
-Row getBoggleRow(List<int> values) {
+Row getBoggleRow(List<int> values, Random rand) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-      getBoggleTile(values[0]),
-      getBoggleTile(values[1]),
-      getBoggleTile(values[2]),
-      getBoggleTile(values[3]),
+      getBoggleTile(values[0], rand),
+      getBoggleTile(values[1], rand),
+      getBoggleTile(values[2], rand),
+      getBoggleTile(values[3], rand),
     ],
   );
 }
 
 SizedBox getBoggleBox() {
+  Random rand = Random();
+
   return SizedBox(
     width: 360,
     height: 360,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        getBoggleRow([0, 1, 2, 3]),
-        getBoggleRow([4, 5, 6, 7]),
-        getBoggleRow([8, 9, 10, 11]),
-        getBoggleRow([12, 13, 14, 15]),
+        getBoggleRow([0, 1, 2, 3], rand),
+        getBoggleRow([4, 5, 6, 7], rand),
+        getBoggleRow([8, 9, 10, 11], rand),
+        getBoggleRow([12, 13, 14, 15], rand),
       ],
     ),
   );
