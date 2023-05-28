@@ -4,54 +4,60 @@ void main() {
   runApp(const MyApp());
 }
 
+int getBoggleDie(int i) {
+  return i;
+}
+
 String getRandomBoggleFace() {
   return 'X';
 }
 
-Container getBoggleTile() {
+SizedBox getBoggleTile(int value) {
   String faceText = getRandomBoggleFace();
 
-  return Container(
-    color: Colors.white,
-    alignment: Alignment.center,
-    child: SizedBox(
-      width: 72,
-      height: 72,
-      child: Align(
-        alignment: Alignment.center,
-        child: Text(
-          textAlign: TextAlign.center,
-          faceText,
-          style: const TextStyle(fontSize: 36),
-        ),
-      ),
+  return SizedBox(
+    height: 90,
+    width: 90,
+    child: Card(
+      color: Colors.red,
+      child: Center(
+          child: Text(
+        faceText,
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 42),
+      )),
     ),
   );
 }
 
-Row getBoggleRow() {
+Row getBoggleRow(List<int> values) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
-      getBoggleTile(),
-      getBoggleTile(),
-      getBoggleTile(),
-      getBoggleTile(),
+      getBoggleTile(values[0]),
+      getBoggleTile(values[1]),
+      getBoggleTile(values[2]),
+      getBoggleTile(values[3]),
     ],
   );
 }
 
 SizedBox getBoggleBox() {
+  List<int> values0 = List.filled(4, 0);
+  List<int> values1 = List.filled(4, 0);
+  List<int> values2 = List.filled(4, 0);
+  List<int> values3 = List.filled(4, 0);
+
   return SizedBox(
     width: 360,
     height: 360,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        getBoggleRow(),
-        getBoggleRow(),
-        getBoggleRow(),
-        getBoggleRow(),
+        getBoggleRow(values0),
+        getBoggleRow(values1),
+        getBoggleRow(values2),
+        getBoggleRow(values3),
       ],
     ),
   );
