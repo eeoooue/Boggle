@@ -95,13 +95,8 @@ int getBoggleDie(int i) {
   return i;
 }
 
-String getRandomBoggleFace() {
-  return 'X';
-}
-
 SizedBox getBoggleTile(int value) {
   BoggleDie die = BoggleDie(value);
-  // String faceText = getRandomBoggleFace();
   String faceText = die.getText();
 
   return SizedBox(
