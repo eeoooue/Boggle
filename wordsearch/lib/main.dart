@@ -142,10 +142,17 @@ SizedBox getBoggleBox() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final double tileSize = 25;
+
+  SizedBox playGrid = getBoggleBox();
 
   @override
   Widget build(BuildContext context) {
@@ -183,19 +190,26 @@ class MyApp extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              child: getBoggleBox(),
+              child: playGrid,
             ),
             const Text(
-              '? ? ?',
+              '. . .',
               style: TextStyle(fontSize: 42, color: Colors.grey),
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.refresh), label: 'refresh'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'settings'),
-        ]),
+        bottomNavigationBar: BottomNavigationBar(
+            onTap: (value) => {
+                  setState(() {
+                    playGrid = getBoggleBox();
+                  })
+                },
+            items: const [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.refresh), label: 'refresh'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.settings), label: 'settings'),
+            ]),
       ),
     );
   }
