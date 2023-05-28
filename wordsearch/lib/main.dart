@@ -159,9 +159,27 @@ class MyApp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              '3:00',
-              style: TextStyle(fontSize: 42),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  '3:00',
+                  style: TextStyle(fontSize: 42),
+                ),
+                SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: Card(
+                    color: Colors.grey,
+                    child: Center(
+                      child: Icon(
+                        Icons.play_arrow,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Container(
               alignment: Alignment.center,
