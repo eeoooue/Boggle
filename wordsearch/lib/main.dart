@@ -163,8 +163,29 @@ class _MyAppState extends State<MyApp> {
   final double tileSize = 25;
 
   SizedBox playGrid = getBoggleBox();
-  String timerTime = '3:00';
   IconData timerBtnIcon = Icons.play_arrow;
+  bool timerActive = false;
+  int secondsElapsed = 180;
+
+  String getTimerString() {
+    int minutes = secondsElapsed ~/ 60;
+    String seconds = (secondsElapsed % 60).toString();
+    if (seconds.length == 1) {
+      seconds = '0$seconds';
+    }
+
+    return '$minutes:$seconds';
+  }
+
+  void switchTimerState() {
+    if (timerActive) {
+      timerActive = false;
+      timerBtnIcon = Icons.play_arrow;
+    } else {
+      timerActive = true;
+      timerBtnIcon = Icons.pause;
+    }
+  }
 
   GestureDetector getTimerBtn() {
     return GestureDetector(
@@ -200,7 +221,7 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  timerTime,
+                  getTimerString(),
                   style: const TextStyle(fontSize: 42),
                 ),
                 getTimerBtn(),
