@@ -163,6 +163,7 @@ class _MyAppState extends State<MyApp> {
   final double tileSize = 25;
 
   SizedBox playGrid = getBoggleBox();
+  String timerTime = '3:00';
 
   @override
   Widget build(BuildContext context) {
@@ -176,14 +177,14 @@ class _MyAppState extends State<MyApp> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  '3:00',
-                  style: TextStyle(fontSize: 42),
+                  timerTime,
+                  style: const TextStyle(fontSize: 42),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 60,
                   height: 60,
                   child: Card(
