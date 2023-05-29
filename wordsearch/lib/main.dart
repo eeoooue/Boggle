@@ -164,6 +164,25 @@ class _MyAppState extends State<MyApp> {
 
   SizedBox playGrid = getBoggleBox();
   String timerTime = '3:00';
+  IconData timerBtnIcon = Icons.play_arrow;
+
+  GestureDetector getTimerBtn() {
+    return GestureDetector(
+      child: SizedBox(
+        width: 60,
+        height: 60,
+        child: Card(
+          color: Colors.grey,
+          child: Center(
+            child: Icon(
+              timerBtnIcon,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -184,19 +203,7 @@ class _MyAppState extends State<MyApp> {
                   timerTime,
                   style: const TextStyle(fontSize: 42),
                 ),
-                const SizedBox(
-                  width: 60,
-                  height: 60,
-                  child: Card(
-                    color: Colors.grey,
-                    child: Center(
-                      child: Icon(
-                        Icons.play_arrow,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                getTimerBtn(),
               ],
             ),
             Container(
