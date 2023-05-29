@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'dart:math';
 
 void main() {
@@ -164,8 +165,39 @@ class _MyAppState extends State<MyApp> {
 
   SizedBox playGrid = getBoggleBox();
   IconData timerBtnIcon = Icons.play_arrow;
+  String timerString = "3:00";
   bool timerActive = false;
+  int maxTimerDuration = 180;
   int secondsElapsed = 180;
+
+  _MyAppState() {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      timerAction();
+    });
+  }
+
+  void newGame() {
+    setState(() {
+      playGrid = getBoggleBox();
+      timerActive = false;
+      timerBtnIcon = Icons.play_arrow;
+      secondsElapsed = maxTimerDuration;
+      timerString = getTimerString();
+    });
+  }
+
+  void timerAction() {
+    if (timerActive) {
+      setState(() {
+        if (secondsElapsed == 0) {
+          switchTimerState();
+        } else {
+          secondsElapsed -= 1;
+          timerString = getTimerString();
+        }
+      });
+    }
+  }
 
   String getTimerString() {
     int minutes = secondsElapsed ~/ 60;
@@ -189,6 +221,11 @@ class _MyAppState extends State<MyApp> {
 
   GestureDetector getTimerBtn() {
     return GestureDetector(
+      onTap: () {
+        setState(() {
+          switchTimerState();
+        });
+      },
       child: SizedBox(
         width: 60,
         height: 60,
@@ -221,7 +258,7 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  getTimerString(),
+                  timerString,
                   style: const TextStyle(fontSize: 42),
                 ),
                 getTimerBtn(),
@@ -239,12 +276,7 @@ class _MyAppState extends State<MyApp> {
         ),
         bottomNavigationBar: BottomNavigationBar(
             onTap: (value) => {
-                  if (value == 0)
-                    {
-                      setState(() {
-                        playGrid = getBoggleBox();
-                      })
-                    }
+                  if (value == 0) {newGame()}
                 },
             items: const [
               BottomNavigationBarItem(
