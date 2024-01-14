@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <None Update="Dictionary_Large.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

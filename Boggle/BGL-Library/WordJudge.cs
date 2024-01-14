@@ -17,12 +17,12 @@ namespace BGL_Library
     internal class WordJudge
     {
         private static WordJudge? _instance;
-        private Dictionary wordlist;
+        private BoggleDictionary wordlist;
         private HashSet<string> seen;
 
         private WordJudge()
         {
-            wordlist = new Dictionary();
+            wordlist = new BoggleDictionary();
             seen = new HashSet<string>();
         }
 
@@ -56,6 +56,11 @@ namespace BGL_Library
 
         public bool DictionaryContains(string word)
         {
+            if (!wordlist.Loaded)
+            {
+                return true;
+            }
+
             return wordlist.words.Contains(word);
         }
 

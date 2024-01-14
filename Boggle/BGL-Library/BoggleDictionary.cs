@@ -6,19 +6,27 @@ using System.Threading.Tasks;
 
 namespace BGL_Library
 {
-
-    public class Dictionary
+    public class BoggleDictionary
     {
         public HashSet<string> words = new HashSet<string>();
 
-        public Dictionary()
+        public bool Loaded = false;
+
+        public BoggleDictionary()
         {
-            LoadWords("Dictionary_Large.txt");
+            try
+            {
+                LoadWords("Dictionary_Large.txt");
+                Loaded = true;
+            }
+            catch
+            {
+                Loaded = false;
+            }
         }
 
         private void LoadWords(string filename)
         {
-
             using (StreamReader reader = new StreamReader(filename))
             {
                 while (!reader.EndOfStream)
@@ -31,7 +39,5 @@ namespace BGL_Library
 
             Console.WriteLine($"{words.Count} words loaded into dictionary");
         }
-
     }
-
 }

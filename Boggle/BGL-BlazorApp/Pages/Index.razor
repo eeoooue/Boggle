@@ -1,0 +1,71 @@
+﻿@using BGL_Library
+
+
+@page "/"
+
+<h1>Boggle!</h1>
+
+<input @bind="userGuess" />
+<button @onclick="() => SubmitGuess(userGuess)">Submit Guess</button>
+
+<table>
+    @for (int i = 0; i < 4; i++)
+    {
+        <tr>
+            @for (int j = 0; j < 4; j++)
+            {
+                <td>@boardstate[i, j]</td>
+            }
+        </tr>
+    }
+</table>
+
+@if (showFeedback)
+{
+    <div>@feedbackMessage</div>
+}
+
+
+@code {
+    private BoggleGame game;
+    private string[,] boardstate;
+    private string userGuess;
+
+    private bool showFeedback = false;
+    private string feedbackMessage = "";
+
+    protected override void OnInitialized()
+    {
+        game = BoggleGame.GetInstance();
+        boardstate = game.GetGrid();
+    }
+
+    void SubmitGuess(string guess)
+    {
+        guess = guess.ToLower();
+        GuessOutcome outcome = game.SubmitGuess(guess);
+        feedbackMessage = GetFeedback(guess, outcome);
+        showFeedback = true;
+    }
+
+    string GetFeedback(string guess, GuessOutcome outcome)
+    {
+        switch (outcome)
+        {
+            case GuessOutcome.Correct:
+                return $"Well done! You found '{guess}'.";
+
+            case GuessOutcome.AlreadyFound:
+                return $"You're already earned points for '{guess}'.";
+
+            case GuessOutcome.InvalidWord:
+                return $"'{guess}' isn't in our Boggle dictionary";
+
+            case GuessOutcome.NotInBoard:
+                return $"'{guess}' isn't available on the board.";
+
+            default:
+                return "Something went wrong.";
+        }
+    }
+}
