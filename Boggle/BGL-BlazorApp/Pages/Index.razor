@@ -3,33 +3,45 @@
 
 @page "/"
 
-<h1>Boggle!</h1>
+<MudContainer>
 
 <input @bind="userGuess" />
-<button @onclick="() => SubmitGuess(userGuess)">Submit Guess</button>
 
-<table>
-    @for (int i = 0; i < 4; i++)
+
+
+<MudButton Variant="Variant.Filled" @onclick="() => SubmitGuess(userGuess)">Submit Guess </MudButton>
+
+    @for(int i=0; i<4; i++)
     {
-        <tr>
-            @for (int j = 0; j < 4; j++)
+        <MudGrid Spacing="2" Justify="Justify.Center">
+
+            @for(int j=0; j<4; j++)
             {
-                <td>@boardstate[i, j]</td>
+                <MudItem>
+                    <MudPaper Height="140px" Width="140px">
+                        
+                        
+                        A
+                        
+                    </MudPaper>
+                </MudItem>
             }
-        </tr>
+
+        </MudGrid>
     }
-</table>
 
 @if (showFeedback)
 {
     <div>@feedbackMessage</div>
 }
 
+</MudContainer>
+
 
 @code {
     private BoggleGame game;
     private string[,] boardstate;
-    private string userGuess;
+    private string userGuess = "";
 
     private bool showFeedback = false;
     private string feedbackMessage = "";
