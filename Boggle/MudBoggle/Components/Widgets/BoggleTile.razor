@@ -1,0 +1,23 @@
+﻿
+<MudItem xs="3">
+    <MudPaper Class="@GetClass()">
+        <MudText Typo="Typo.h4">@Text</MudText>
+    </MudPaper>
+</MudItem>
+
+    @code {
+    [Parameter]
+    public string Text { get; set; }
+
+    public bool Active = false;
+
+    private string GetClass()
+    {
+        if (Active)
+        {
+            return "d-flex align-center justify-center mud-width-full py-8 mud-theme-primary";
+        }
+
+        return "d-flex align-center justify-center mud-width-full py-8";
+    }
+}

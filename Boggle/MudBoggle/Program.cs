@@ -1,7 +1,7 @@
-using BGL_MudApp.Components;
 using MudBlazor.Services;
+using MudBoggle.Components;
 
-namespace BGL_MudApp
+namespace MudBoggle
 {
     public class Program
     {

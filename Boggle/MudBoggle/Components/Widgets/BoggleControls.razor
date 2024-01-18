@@ -1,0 +1,34 @@
+﻿
+
+
+<MudToolBar>
+
+	<MudText Typo="Typo.h5">@CurrentTime</MudText>
+
+	<MudSpacer></MudSpacer>
+
+	<MudTextField @bind-Value="TextValue" Label="Find Word" Variant="Variant.Outlined"></MudTextField>
+
+	<MudSpacer></MudSpacer>
+
+	<MudIconButton Icon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" aria-label="Restart"></MudIconButton>
+
+
+
+
+</MudToolBar>
+
+
+
+
+@code {
+
+	public string TextValue { get; set; }
+
+	public string CurrentTime = "3:00";
+
+	public void ResetBoard()
+	{
+		
+	}
+}

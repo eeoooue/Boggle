@@ -1,0 +1,26 @@
+﻿
+
+@page "/"
+@using MudBoggle.Components.Widgets
+
+<PageTitle>Home</PageTitle>
+
+
+
+
+<MudContainer MaxWidth="MaxWidth.Small">
+
+
+    <MudStack>
+
+        <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">Boggle</MudText>
+
+        <BoggleControls></BoggleControls>
+
+        <MudText Class="mb-8">Welcome to your new app, powered by MudBlazor and the .NET 8 Template!</MudText>
+
+        <BoggleBoard></BoggleBoard>
+
+    </MudStack>
+
+</MudContainer>
