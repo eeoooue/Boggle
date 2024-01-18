@@ -1,5 +1,5 @@
 ﻿
-
+@using BGL_Library
 
 <MudToolBar>
 
@@ -7,21 +7,21 @@
 
 	<MudSpacer></MudSpacer>
 
-	<MudTextField @bind-Value="TextValue" Label="Find Word" Variant="Variant.Outlined"></MudTextField>
+	<MudTextField @bind-Value="TextValue" Variant="Variant.Outlined"></MudTextField>
 
 	<MudSpacer></MudSpacer>
 
 	<MudIconButton Icon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" aria-label="Restart"></MudIconButton>
-
-
-
 
 </MudToolBar>
 
 
 
 
-@code {
+	@code {
+
+	[Parameter]
+	public BoggleGame Game { get; set; }
 
 	public string TextValue { get; set; }
 
@@ -29,6 +29,6 @@
 
 	public void ResetBoard()
 	{
-		
+		Game.NewGrid();
 	}
 }

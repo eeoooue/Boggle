@@ -2,25 +2,27 @@
 
 @page "/"
 @using MudBoggle.Components.Widgets
+@using BGL_Library
 
 <PageTitle>Home</PageTitle>
 
-
-
-
 <MudContainer MaxWidth="MaxWidth.Small">
-
 
     <MudStack>
 
         <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">Boggle</MudText>
 
-        <BoggleControls></BoggleControls>
+        <BoggleControls Game="@Game"></BoggleControls>
 
         <MudText Class="mb-8">Welcome to your new app, powered by MudBlazor and the .NET 8 Template!</MudText>
 
-        <BoggleBoard></BoggleBoard>
+        <BoggleBoard Game="@Game"></BoggleBoard>
 
     </MudStack>
 
 </MudContainer>
+
+
+@code {
+    public BoggleGame Game = BoggleGame.GetInstance();
+}

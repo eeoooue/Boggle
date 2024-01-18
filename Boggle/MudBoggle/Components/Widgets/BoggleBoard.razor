@@ -1,31 +1,16 @@
-﻿
+﻿@using BGL_Library
 
-
-
-
-
-
-
-
-    <MudGrid>
-
-        @for (int i = 0; i < 16; i++)
+<MudGrid>
+    @for (int i = 0; i < 4; i++)
+    {
+        @for(int j=0; j<4; j++)
         {
-            <BoggleTile Text="A"></BoggleTile>
+            <BoggleTile Text="@Game.GetGrid()[i,j]"></BoggleTile>
         }
-
-    </MudGrid>
-
-
-
-
-
-
-
-
-
-
+    }
+</MudGrid>
 
 @code {
-
+    [Parameter]
+    public BoggleGame Game { get; set; }
 }
