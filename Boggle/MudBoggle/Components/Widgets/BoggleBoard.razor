@@ -5,7 +5,7 @@
     {
         @for(int j=0; j<4; j++)
         {
-            <BoggleTile Text="@Game.GetGrid()[i,j]"></BoggleTile>
+            <BoggleTile Text="@Faces[i,j]"></BoggleTile>
         }
     }
 </MudGrid>
@@ -13,4 +13,6 @@
 @code {
     [Parameter]
     public BoggleGame Game { get; set; }
+
+    public string[,] Faces = BoggleGame.GetInstance().GetGrid();
 }

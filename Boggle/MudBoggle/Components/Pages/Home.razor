@@ -9,20 +9,43 @@
 <MudContainer MaxWidth="MaxWidth.Small">
 
     <MudStack>
-
         <MudText Typo="Typo.h4" Align="Align.Center" GutterBottom="true">Boggle</MudText>
-
-        <BoggleControls Game="@Game"></BoggleControls>
 
         <MudText Class="mb-8">Welcome to your new app, powered by MudBlazor and the .NET 8 Template!</MudText>
 
-        <BoggleBoard Game="@Game"></BoggleBoard>
+        <MudToolBar>
+            <MudText Typo="Typo.h5">@CurrentTime</MudText>
+                <MudSpacer></MudSpacer>
+                <MudTextField @bind-Value="TextValue" Variant="Variant.Outlined"></MudTextField>
+                <MudSpacer></MudSpacer>
+                <MudIconButton Icon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" aria-label="Restart" OnClick="ResetBoard"></MudIconButton>
+                <MudButton OnClick="ResetBoard">Reset</MudButton>
+            </MudToolBar>
+
+            <BoggleBoard Game="@Game"></BoggleBoard>
 
     </MudStack>
 
 </MudContainer>
 
 
-@code {
+    @code {
     public BoggleGame Game = BoggleGame.GetInstance();
+
+    public string TextValue { get; set; }
+
+    public string CurrentTime = "3:00";
+
+    public void ResetBoard()
+    {
+        Game.NewGrid();
+        CurrentTime = GetRandomTime();
+        StateHasChanged();
+    }
+
+    public string GetRandomTime()
+    {
+        Random rand = new Random();
+        return rand.Next(1, 1001).ToString();
+    }
 }
