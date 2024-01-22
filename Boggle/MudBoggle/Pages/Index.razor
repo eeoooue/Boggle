@@ -5,7 +5,6 @@
 
 <PageTitle>Boggle</PageTitle>
 
-
 <MudContainer>
 
 	<MudStack Justify="Justify.Center">
@@ -20,7 +19,7 @@
 
 		<MudGrid Class="align-center">
 			<MudItem xs="3">
-				<MudText Align="Align.Center" Typo="Typo.h6">3:00</MudText>
+				<MudText Align="Align.Center" Typo="Typo.h6">@ClockTime</MudText>
 			</MudItem>
 			<MudItem xs="6">
 				<MudText Align="Align.Center">@Feedback</MudText>
@@ -60,7 +59,13 @@
 
 	public int Points {get { return Game.points; } }
 
+	public string ClockTime { get { return GetFormattedTimer(Seconds);  }}
+
+	public int Seconds = 180;
+
 	public string Feedback = "Guess a word!";
+
+	private int CurrentVersion = 1;
 
 	public string Score
 	{
@@ -70,11 +75,44 @@
 		}
 	}
 
+	void ResetTimer()
+	{
+		Seconds = 180;
+		TickTimer(CurrentVersion);
+	}
+
+	async void TickTimer(int version)
+	{
+		await Task.Delay(1000);
+
+		if (Seconds > 0 && CurrentVersion == version)
+		{
+			Seconds -= 1;
+			StateHasChanged();
+			TickTimer(version);
+		}
+	}
+
 	void NewGame()
 	{
+		CurrentVersion = (CurrentVersion + 1) % 1024;
 		TextValue = "";
 		Feedback = "Guess a word!";
 		Game.NewGrid();
+		ResetTimer();
+	}
+
+	string GetFormattedTimer(int seconds)
+	{
+		int minutes = seconds / 60;
+		seconds = seconds % 60;
+		string s = seconds.ToString();
+
+		if (s.Length == 1)
+		{
+			return $"{minutes}:0{s}";
+		}
+		return $"{minutes}:{s}";
 	}
 
 	void GuessWord()
