@@ -56,8 +56,12 @@ namespace BGL_Library
 
         public bool DictionaryContains(string word)
         {
-            return wordlist.words.Contains(word);
-        }
+            if (wordlist.Loaded)
+            {
+				return wordlist.words.Contains(word);
+			}
+            return true;
+		}
 
         public GuessOutcome GetGuessOutcome(string word, string[,] grid)
         {
