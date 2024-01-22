@@ -1,0 +1,22 @@
+﻿
+
+
+<MudGrid>
+	@for(int i=0; i<4; i++)
+	{
+		@for(int j=0; j<4; j++)
+		{
+			<BoggleTile TileText="@GetTileLetter(i, j)"></BoggleTile>
+		}
+	}
+</MudGrid>
+
+@code {
+
+	string GetTileLetter(int i, int j)
+	{
+		string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		int p = (i * 4) + j;
+		return abc[p].ToString();
+	}
+}

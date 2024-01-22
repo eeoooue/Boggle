@@ -1,9 +1,20 @@
-﻿@page "/"
+﻿@using MudBoggle.Widgets
 
-<PageTitle>Index</PageTitle>
+@page "/"
 
-<h1>Hello, world!</h1>
+<PageTitle>Boggle</PageTitle>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<MudContainer>
+
+	<BoggleBoard></BoggleBoard>
+
+</MudContainer>
+
+
+@code {
+
+
+
+
+}
