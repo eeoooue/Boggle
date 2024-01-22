@@ -1,5 +1,5 @@
 ﻿
-
+@using BGL_Library
 
 <MudGrid>
 	@for(int i=0; i<4; i++)
@@ -13,10 +13,12 @@
 
 @code {
 
+	[Parameter]
+	public BoggleGame Game { get; set; }
+
 	string GetTileLetter(int i, int j)
 	{
-		string abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		int p = (i * 4) + j;
-		return abc[p].ToString();
+		string[,] tiles = Game.GetGrid();
+		return tiles[i, j];
 	}
 }
