@@ -7,14 +7,44 @@
 
 <MudContainer>
 
-	<BoggleBoard></BoggleBoard>
+	<MudStack Justify="Justify.Center">
+
+		<MudToolBar>
+
+			<MudText Typo="Typo.h5" Align="Align.Center">@Score</MudText>
+
+			<MudSpacer></MudSpacer>
+
+			<MudButton OnClick="@NewGame" Variant="Variant.Filled">New Game</MudButton>
+
+		</MudToolBar>
+
+		<MudTextField @bind-Value="TextValue" Variant="Variant.Outlined"></MudTextField>
+
+		<BoggleBoard></BoggleBoard>
+
+	</MudStack>
 
 </MudContainer>
 
 
-@code {
+	@code {
 
+	public string TextValue { get; set; }
 
+	public int Points = 20;
 
+	public string Score
+	{
+		get
+		{
+			return $"Score: {Points}";
+		}
+	
+	}
 
+	void NewGame()
+	{
+		Points = 0;
+	}
 }
