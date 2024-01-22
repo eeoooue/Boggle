@@ -1,0 +1,143 @@
+﻿@using MudBoggle.Widgets
+@using BGL_Library
+
+@page "/"
+
+<PageTitle>Boggle</PageTitle>
+
+<MudContainer>
+
+	<MudStack Justify="Justify.Center">
+
+		<MudSpacer></MudSpacer>
+
+		<MudToolBar Class="ma-3">
+			<MudSpacer></MudSpacer>
+			<MudText Typo="Typo.h3">Boggle</MudText>
+			<MudSpacer></MudSpacer>
+		</MudToolBar>
+
+		<MudGrid Class="align-center">
+			<MudItem xs="3">
+				<MudText Align="Align.Center" Typo="Typo.h6">@ClockTime</MudText>
+			</MudItem>
+			<MudItem xs="6">
+				<MudText Align="Align.Center">@Feedback</MudText>
+			</MudItem>
+			<MudItem xs="3">
+					<MudButton OnClick="@NewGame" Variant="Variant.Filled" FullWidth="true">New Game</MudButton>
+			</MudItem>
+		</MudGrid>
+
+			<MudGrid Class="align-center">
+				<MudItem xs="3">
+					<MudText Align="Align.Center" Typo="Typo.h6">@Score</MudText>
+				</MudItem>
+				<MudItem xs="6">
+					<MudTextField @bind-Value="TextValue" Variant="Variant.Outlined"></MudTextField>
+				</MudItem>
+				<MudItem xs="3">
+					<MudButton OnClick="@GuessWord" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Submit</MudButton>
+				</MudItem>
+			</MudGrid>
+
+
+		<MudDivider DividerType="DividerType.Middle"/>
+
+		<BoggleBoard Game="@Game"></BoggleBoard>
+
+	</MudStack>
+
+</MudContainer>
+
+
+	@code {
+
+	public string TextValue = "";
+
+	public BoggleGame Game = BoggleGame.GetInstance();
+
+	public int Points {get { return Game.points; } }
+
+	public string ClockTime { get { return GetFormattedTimer(Seconds);  }}
+
+	public int Seconds = 180;
+
+	public string Feedback = "Guess a word!";
+
+	private int CurrentVersion = 1;
+
+	public string Score
+	{
+		get
+		{
+			return $"Score: {Points}";
+		}
+	}
+
+	void ResetTimer()
+	{
+		Seconds = 180;
+		TickTimer(CurrentVersion);
+	}
+
+	async void TickTimer(int version)
+	{
+		await Task.Delay(1000);
+
+		if (Seconds > 0 && CurrentVersion == version)
+		{
+			Seconds -= 1;
+			StateHasChanged();
+			TickTimer(version);
+		}
+	}
+
+	void NewGame()
+	{
+		CurrentVersion = (CurrentVersion + 1) % 1024;
+		TextValue = "";
+		Feedback = "Guess a word!";
+		Game.NewGrid();
+		ResetTimer();
+	}
+
+	string GetFormattedTimer(int seconds)
+	{
+		int minutes = seconds / 60;
+		seconds = seconds % 60;
+		string s = seconds.ToString();
+
+		if (s.Length == 1)
+		{
+			return $"{minutes}:0{s}";
+		}
+		return $"{minutes}:{s}";
+	}
+
+	void GuessWord()
+	{
+		string guess = TextValue;
+		GuessOutcome outcome = Game.SubmitGuess(guess);
+		Feedback = GetFeedbackString(guess, outcome);
+		TextValue = "";
+	}
+
+	string GetFeedbackString(string guess, GuessOutcome outcome)
+	{
+		switch (outcome)
+		{
+			case GuessOutcome.AlreadyFound:
+				return $"You've already found '{guess}'.";
+
+			case GuessOutcome.NotInBoard:
+				return $"We couldn't find '{guess}'  in the board.";
+
+			case GuessOutcome.Correct:
+				return $"Well done! You found '{guess}'.";
+
+			default:
+				return $"'{guess}' isn't a valid word in our Boggle dictionary.";
+		}
+	}
+}

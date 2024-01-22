@@ -11,14 +11,23 @@ namespace BGL_Library
     {
         public HashSet<string> words = new HashSet<string>();
 
+        public bool Loaded = false;
+
         public Dictionary()
         {
-            LoadWords("Dictionary_Large.txt");
-        }
+            try
+            {
+				LoadWords("Dictionary_Large.txt");
+                Loaded = true;
+			}
+            catch
+            {
+                Loaded = false;
+            }
+		}
 
         private void LoadWords(string filename)
         {
-
             using (StreamReader reader = new StreamReader(filename))
             {
                 while (!reader.EndOfStream)
