@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider Theme="MyCustomTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -13,3 +13,29 @@
         @Body
     </MudMainContent>
 </MudLayout>
+
+
+@code{
+
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = "#3F51B5",
+                Secondary = "#78909C",
+                AppbarBackground = "#3F51B5",
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = "#3F51B5",
+                Secondary = "#78909C",
+                AppbarBackground = "#3F51B5",
+            },
+
+            LayoutProperties = new LayoutProperties()
+            {
+                DrawerWidthLeft = "260px",
+                DrawerWidthRight = "300px"
+            }
+        };
+}

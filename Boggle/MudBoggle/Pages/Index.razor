@@ -10,36 +10,40 @@
 
 	<MudStack Justify="Justify.Center">
 
-		<MudToolBar Class="ma-6">
+		<MudSpacer></MudSpacer>
+
+		<MudToolBar Class="ma-3">
 			<MudSpacer></MudSpacer>
 			<MudText Typo="Typo.h3">Boggle</MudText>
 			<MudSpacer></MudSpacer>
 		</MudToolBar>
 
-
-		<MudToolBar>
-			<MudTextField @bind-Value="TextValue" Variant="Variant.Outlined"></MudTextField>
-			<MudButton Class="ma-6" OnClick="@GuessWord" Variant="Variant.Filled" Color="Color.Primary">Submit</MudButton>
-		</MudToolBar>
-
-
-		<MudGrid>
-
+		<MudGrid Class="align-center">
 			<MudItem xs="3">
-				<MudButton Variant="Variant.Filled" Disabled="true">3:00</MudButton>
-				<MudButton Variant="Variant.Filled" Disabled="true">@Score</MudButton>
+				<MudText Align="Align.Center" Typo="Typo.h6">3:00</MudText>
 			</MudItem>
-
 			<MudItem xs="6">
-					<MudText Align="Align.Center">@Feedback</MudText>
+				<MudText Align="Align.Center">@Feedback</MudText>
 			</MudItem>
-
 			<MudItem xs="3">
-					<MudButton OnClick="@NewGame" Variant="Variant.Filled">New Game</MudButton>
+					<MudButton OnClick="@NewGame" Variant="Variant.Filled" FullWidth="true">New Game</MudButton>
 			</MudItem>
-
 		</MudGrid>
 
+			<MudGrid Class="align-center">
+				<MudItem xs="3">
+					<MudText Align="Align.Center" Typo="Typo.h6">@Score</MudText>
+				</MudItem>
+				<MudItem xs="6">
+					<MudTextField @bind-Value="TextValue" Variant="Variant.Outlined"></MudTextField>
+				</MudItem>
+				<MudItem xs="3">
+					<MudButton OnClick="@GuessWord" Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Submit</MudButton>
+				</MudItem>
+			</MudGrid>
+
+
+		<MudDivider DividerType="DividerType.Middle"/>
 
 		<BoggleBoard Game="@Game"></BoggleBoard>
 
@@ -70,7 +74,7 @@
 	void NewGame()
 	{
 		TextValue = "";
-		Feedback = "";
+		Feedback = "Guess a word!";
 		Game.NewGrid();
 	}
 
