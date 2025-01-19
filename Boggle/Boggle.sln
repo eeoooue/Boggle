@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BGL-WPFApp", "BGL-WPFApp\BG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudBoggle", "MudBoggle\MudBoggle.csproj", "{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibBoggle", "LibBoggle\LibBoggle.csproj", "{1EB04E68-ABB1-4B63-925D-250D88A8084D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggleCLI", "BoggleCLI\BoggleCLI.csproj", "{0B6F1BBD-E667-4C35-9333-2BE3BCAE1C49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6F1BBD-E667-4C35-9333-2BE3BCAE1C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6F1BBD-E667-4C35-9333-2BE3BCAE1C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6F1BBD-E667-4C35-9333-2BE3BCAE1C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6F1BBD-E667-4C35-9333-2BE3BCAE1C49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
