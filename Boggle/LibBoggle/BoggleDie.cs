@@ -22,7 +22,7 @@ namespace LibBoggle
 
         public void Roll(Randomizer randomizer)
         {
-            CurrentFace = randomizer.RollD6() - 1;
+            CurrentFace = randomizer.PickRandomIndex(Faces.Length);
         }
     }
 }

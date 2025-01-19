@@ -10,11 +10,6 @@ namespace LibBoggle
     {
         private Random Random = new Random();
 
-        public int RollD6()
-        {
-            return 1 + Random.Next(0, 6);
-        }
-
         public int PickRandomIndex(int count)
         {
             return Random.Next(0, count);
