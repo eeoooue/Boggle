@@ -25,7 +25,7 @@ namespace LibBoggle
 
         public void Randomize(Randomizer randomizer)
         {
-            Dice = randomizer.ShuffleDice(Dice);
+            randomizer.ShuffleDice(Dice);
             foreach(BoggleDie die in Dice)
             {
                 die.Roll(randomizer);

@@ -15,23 +15,14 @@ namespace LibBoggle
             return Random.Next(0, count);
         }
 
-        public List<BoggleDie> ShuffleDice(List<BoggleDie> dice)
+        public void ShuffleDice(List<BoggleDie> dice)
         {
-            List<BoggleDie> result = new List<BoggleDie>();
-            HashSet<int> seen = new HashSet<int>();
-
-            while (result.Count < dice.Count)
+            int n = dice.Count;
+            for (int i = n - 1; i > 0; i--)
             {
-                int i = PickRandomIndex(dice.Count);
-
-                if (!seen.Contains(i))
-                {
-                    seen.Add(i);
-                    result.Add(dice[i]);
-                }
+                int j = PickRandomIndex(i + 1);
+                (dice[i], dice[j]) = (dice[j], dice[i]);
             }
-
-            return dice;
         }
     }
 }
