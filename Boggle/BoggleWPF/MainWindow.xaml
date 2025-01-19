@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BoggleWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Boggle Game" Height="800" Width="1200">
 
-    </Grid>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+
+        <!-- Header -->
+        <StackPanel HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="{Binding Header.Title}" Margin="5" Foreground="DarkSlateBlue" HorizontalAlignment="Center" FontSize="40" />
+            <TextBlock Text="{Binding Header.Message}" Margin="5" HorizontalAlignment="Center" FontSize="20" />
+        </StackPanel>
+
+        <!-- Grid -->
+        <StackPanel HorizontalAlignment="Center" Margin="10">
+            <ItemsControl ItemsSource="{Binding Grid.Tiles}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="4" Columns="4" Width="400" Height="400"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="5">
+                            <TextBlock Text="{Binding Letter}" FontSize="36" Foreground="DarkSlateBlue"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <!-- Footer -->
+        <StackPanel HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="{Binding Footer.Message}" FontSize="18" Margin="5" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Footer.UserInput, UpdateSourceTrigger=PropertyChanged}" Margin="5" HorizontalAlignment="Center" FontSize="26" Width="280"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Command="{Binding SubmitGuessCommand}" FontSize="18" Padding="2" Content="Submit" Background="DarkSlateBlue" Foreground="White" Width="100" Margin="10"/>
+                <Button Command="{Binding StartOverCommand}" FontSize="18" Padding="2" Content="Start Over" Width="100" Margin="10"/>
+            </StackPanel>
+            
+        </StackPanel>
+
+    </StackPanel>
+
 </Window>
