@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="BoggleWPF.Views.GridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BoggleWPF.Views"
+             mc:Ignorable="d" 
+             >
+    <StackPanel HorizontalAlignment="Center" Margin="10">
+        <ItemsControl ItemsSource="{Binding Tiles}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="4" Columns="4" Width="400" Height="400" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="1" BorderBrush="Black" Padding="10" Margin="5">
+                        <TextBlock Text="{Binding Letter}" FontSize="36" Foreground="DarkSlateBlue"
+                                HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+
+</UserControl>
