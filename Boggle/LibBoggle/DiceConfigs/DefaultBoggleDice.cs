@@ -34,6 +34,7 @@ namespace LibBoggle.DiceConfigs
             for (int i = 0; i < count; i++)
             {
                 BoggleDie die = new BoggleDie(diceMaps[i % diceMaps.Length]);
+                result.Add(die);
             }
 
             return result;

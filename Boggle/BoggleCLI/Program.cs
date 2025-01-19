@@ -1,4 +1,5 @@
-﻿using BGL_Library;
+﻿using LibBoggle;
+using LibBoggle.GuessOutcomes;
 
 namespace BoggleCLI
 {
@@ -6,17 +7,17 @@ namespace BoggleCLI
     {
         static void Main(string[] args)
         {
-            BoggleGame myGame = BoggleGame.GetInstance(4, 4, 16);
+            BoggleGame game = new BoggleGame();
 
             do
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to Boggle!");
-                myGame.NewGrid();
+                game.NewGame();
 
                 do
                 {
-                    PrintGrid(myGame.GetGrid(), myGame.points);
+                    PrintGrid(game.Grid, game.Points);
                     string input = Console.ReadLine().ToLower();
 
                     if (input == "start over")
@@ -25,36 +26,24 @@ namespace BoggleCLI
                     }
 
                     Console.Clear();
-                    InterpretGuess(ref myGame, input);
+                    InterpretGuess(ref game, input);
 
                 } while (true);
 
             } while (true);
         }
 
-        static void InterpretGuess(ref BoggleGame myGame, string input)
+        static void InterpretGuess(ref BoggleGame game, string input)
         {
-            GuessOutcome outcome = myGame.SubmitGuess(input);
+            GuessOutcome outcome = game.SubmitGuess(input);
 
             switch (outcome)
             {
-                case GuessOutcome.AlreadyFound:
-                    SayInColour($"'{input}' has already been found!", ConsoleColor.Red);
+                case PointsScoredOutcome:
+                    SayInColour(outcome.GetMessage(), ConsoleColor.Green);
                     break;
-
-                case GuessOutcome.Correct:
-                    SayInColour($"well done! you found '{input}' (+{myGame.WordScore(input)} points)", ConsoleColor.Green);
-                    break;
-
-                case GuessOutcome.InvalidWord:
-                    SayInColour($"'{input}' isn't a valid word for Boggle", ConsoleColor.Red);
-                    break;
-
-                case GuessOutcome.NotInBoard:
-                    SayInColour($"'{input}' couldn't be found", ConsoleColor.Red);
-                    break;
-
                 default:
+                    SayInColour(outcome.GetMessage(), ConsoleColor.Red);
                     break;
             }
         }

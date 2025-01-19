@@ -20,18 +20,22 @@ namespace LibBoggle
             Dictionary = dictionary;
         }
 
-        public GuessOutcome GetGuessOutcome(string guess)
+        public GuessOutcome GetGuessOutcome(string[,] grid, string guess)
         {
             guess = guess.ToUpper();
-
-            if (!WordExistsInGrid(guess))
-            {
-                return new WordNotInGrid(guess);
-            }
-
             if (!Dictionary.ContainsWord(guess))
             {
                 return new WordNotInDictionary(guess);
+            }
+
+            if (guess.Length < 3)
+            {
+                return new WordTooShort(guess);
+            }
+
+            if (!WordExistsInGrid(grid, guess))
+            {
+                return new WordNotInGrid(guess);
             }
 
             if (WordsFound.Contains(guess))
@@ -52,12 +56,27 @@ namespace LibBoggle
 
         private int ScoreWord(string word)
         {
-            throw new NotImplementedException();
+            switch (word.Length)
+            {
+                case < 3:
+                    return 0;
+                case < 5:
+                    return 1;
+                case 5:
+                    return 2;
+                case 6:
+                    return 3;
+                case 7:
+                    return 5;
+                default:
+                    return 11;
+            }
         }
 
-        private bool WordExistsInGrid(string word)
+        private bool WordExistsInGrid(string[,] grid, string word)
         {
-            throw new NotImplementedException();
+            GridSearcher searcher = new GridSearcher(word, grid);
+            return searcher.found;
         }
     }
 }

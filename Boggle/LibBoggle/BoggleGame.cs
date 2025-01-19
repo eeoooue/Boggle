@@ -38,14 +38,15 @@ namespace LibBoggle
             BoggleGrid.Randomize(Randomizer);
         }
 
-        public void SubmitGuess(string guess)
+        public GuessOutcome SubmitGuess(string guess)
         {
-            GuessOutcome outcome = ScoringJudge.GetGuessOutcome(guess);
+            GuessOutcome outcome = ScoringJudge.GetGuessOutcome(BoggleGrid.Grid, guess);
             if(outcome is PointsScoredOutcome successfulGuess)
             {
                 Points += successfulGuess.Points;
             }
             Guesses.Add(outcome);
+            return outcome;
         }
 
         public GuessOutcome? GetMostRecentGuess()

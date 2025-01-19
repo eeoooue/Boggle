@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BGL-Library\BGL-Library.csproj" />
+    <ProjectReference Include="..\LibBoggle\LibBoggle.csproj" />
   </ItemGroup>
 
 </Project>
