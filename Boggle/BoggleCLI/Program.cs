@@ -19,38 +19,31 @@ namespace BoggleCLI
 
         static void PlayBoggle(BoggleGame game)
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to Boggle!");
             game.NewGame();
 
             while (true)
             {
-                Presenter.PrintGrid(game.Grid, game.Points);
-                string input = Console.ReadLine().ToLower();
+                Console.Clear();
+                Presenter.PresentGame(game);
 
-                if (input == "start over")
+                string input = GetUserInput();
+                if (input == "START OVER")
                 {
-                    break;
+                    return;
                 }
 
-                Console.Clear();
-                InterpretGuess(ref game, input);
+                game.SubmitGuess(input);
             }
         }
 
-        static void InterpretGuess(ref BoggleGame game, string input)
+        static string GetUserInput()
         {
-            GuessOutcome outcome = game.SubmitGuess(input);
-
-            switch (outcome)
+            string? input = Console.ReadLine();
+            if (input is string text)
             {
-                case PointsScoredOutcome:
-                    Presenter.SayInColour(outcome.GetMessage(), ConsoleColor.Green);
-                    break;
-                default:
-                    Presenter.SayInColour(outcome.GetMessage(), ConsoleColor.Red);
-                    break;
+                return text.ToUpper();
             }
+            return "";
         }
     }
 }
