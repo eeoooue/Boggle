@@ -18,19 +18,13 @@ namespace BoggleWPF.ViewModels
 
         private BoggleGame _game;
 
-        public ICommand SubmitGuessCommand { get; }
-        public ICommand StartOverCommand { get; }
-
         public MainViewModel()
         {
             _game = new BoggleGame();
 
             Grid = new GridViewModel(_game.Grid);
             Header = new HeaderViewModel();
-            Footer = new FooterViewModel();
-
-            SubmitGuessCommand = new RelayCommand(SubmitGuess);
-            StartOverCommand = new RelayCommand(StartOver);
+            Footer = new FooterViewModel(SubmitGuess, StartOver);
 
             StartNewGame();
         }
