@@ -12,15 +12,17 @@ namespace BoggleCLI
     {
         public void PresentGame(BoggleGame game)
         {
-            GuessOutcome? outcome = game.GetMostRecentGuess();
-
             PresentHeader(game);
             PrintGrid(game.Grid, game.Points);
+
+            Console.WriteLine($"Enter a word from the grid to score points!");
+            Console.WriteLine("Enter 'START OVER' for a new grid.");
+
+            GuessOutcome? outcome = game.GetMostRecentGuess();
             if (outcome is GuessOutcome previousOutcome)
             {
                 PresentOutcome(previousOutcome);
             }
-
         }
 
         public void PresentHeader(BoggleGame game)
@@ -46,17 +48,11 @@ namespace BoggleCLI
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Enter a word from the grid to score points!");
-            Console.WriteLine("Enter 'START OVER' for a new grid.");
         }
 
         public void PrintDieFace(string letters)
         {
-            if (letters == null)
-            {
-                letters = " ";
-            }
-            if (letters.Length == 1)
+            if (letters.Length <= 1)
             {
                 letters = $"{letters} ";
             }
