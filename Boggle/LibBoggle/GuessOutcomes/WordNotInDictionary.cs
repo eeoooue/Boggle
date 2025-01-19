@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibBoggle.GuessOutcomes
 {
-    internal class WordNotInDictionary : GuessOutcome
+    public class WordNotInDictionary : GuessOutcome
     {
         public WordNotInDictionary(string guess) : base(guess)
         {

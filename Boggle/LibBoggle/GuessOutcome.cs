@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibBoggle
 {
-    internal abstract class GuessOutcome
+    public abstract class GuessOutcome
     {
         public string Guess = "";
 

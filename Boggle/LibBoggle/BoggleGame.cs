@@ -15,7 +15,7 @@ namespace LibBoggle
         private ScoringJudge ScoringJudge;
         private WordDictionary WordDictionary;
         private Randomizer Randomizer = new Randomizer();
-        private List<GuessOutcome> History = new List<GuessOutcome>();
+        private List<GuessOutcome> Guesses = new List<GuessOutcome>();
 
         public int Points = 0;
 
@@ -33,7 +33,7 @@ namespace LibBoggle
         public void NewGame()
         {
             ScoringJudge.Reset();
-            History.Clear();
+            Guesses.Clear();
             Points = 0;
             BoggleGrid.Randomize(Randomizer);
         }
@@ -45,15 +45,24 @@ namespace LibBoggle
             {
                 Points += successfulGuess.Points;
             }
-            History.Add(outcome);
+            Guesses.Add(outcome);
+        }
+
+        public GuessOutcome? GetMostRecentGuess()
+        {
+            if (Guesses.Count > 0)
+            {
+                return Guesses[Guesses.Count - 1];
+            }
+
+            return null;
         }
 
         public string GetCurrentFeedback()
         {
-            if (History.Count > 0)
+            if (GetMostRecentGuess() is GuessOutcome previousGuess)
             {
-                GuessOutcome mostRecentGuess = History[History.Count - 1];
-                return mostRecentGuess.GetMessage();
+                return previousGuess.GetMessage();
             }
 
             return "Guess a word!";

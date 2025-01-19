@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibBoggle.GuessOutcomes
 {
-    internal class PointsScoredOutcome : GuessOutcome
+    public class PointsScoredOutcome : GuessOutcome
     {
         public int Points = 0;
 
