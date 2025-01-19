@@ -8,17 +8,14 @@
         mc:Ignorable="d"
         Title="Boggle" Height="800" Width="800">
 
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding Footer.SubmitGuessCommand}" />
+    </Window.InputBindings>
+
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-
-        <!-- Header -->
         <views:HeaderView DataContext="{Binding Header}"/>
-
-        <!-- Grid -->
         <views:GridView DataContext="{Binding Grid}" />
-
-        <!-- Footer -->
         <views:FooterView DataContext="{Binding Footer}"/>
-
     </StackPanel>
 
 </Window>

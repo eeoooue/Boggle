@@ -41,7 +41,7 @@ namespace BoggleWPF.ViewModels
         {
             string guess = Footer.UserInput;
             var outcome = _game.SubmitGuess(guess);
-
+            Footer.Clear();
             Header.UpdateScore(_game.Points);
             Footer.ShowOutcome(outcome);
         }
