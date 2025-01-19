@@ -5,32 +5,37 @@ namespace BoggleCLI
 {
     internal class Program
     {
+        private static Presenter Presenter = new Presenter();
+
         static void Main(string[] args)
         {
             BoggleGame game = new BoggleGame();
 
-            do
+            while (true)
             {
-                Console.Clear();
-                Console.WriteLine("Welcome to Boggle!");
-                game.NewGame();
+                PlayBoggle(game);
+            }
+        }
 
-                do
+        static void PlayBoggle(BoggleGame game)
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to Boggle!");
+            game.NewGame();
+
+            while (true)
+            {
+                Presenter.PrintGrid(game.Grid, game.Points);
+                string input = Console.ReadLine().ToLower();
+
+                if (input == "start over")
                 {
-                    PrintGrid(game.Grid, game.Points);
-                    string input = Console.ReadLine().ToLower();
+                    break;
+                }
 
-                    if (input == "start over")
-                    {
-                        break;
-                    }
-
-                    Console.Clear();
-                    InterpretGuess(ref game, input);
-
-                } while (true);
-
-            } while (true);
+                Console.Clear();
+                InterpretGuess(ref game, input);
+            }
         }
 
         static void InterpretGuess(ref BoggleGame game, string input)
@@ -40,55 +45,12 @@ namespace BoggleCLI
             switch (outcome)
             {
                 case PointsScoredOutcome:
-                    SayInColour(outcome.GetMessage(), ConsoleColor.Green);
+                    Presenter.SayInColour(outcome.GetMessage(), ConsoleColor.Green);
                     break;
                 default:
-                    SayInColour(outcome.GetMessage(), ConsoleColor.Red);
+                    Presenter.SayInColour(outcome.GetMessage(), ConsoleColor.Red);
                     break;
             }
-        }
-
-        static void SayInColour(string message, ConsoleColor colour)
-        {
-            Console.ForegroundColor = colour;
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-
-        static void PrintGrid(string[,] grid, int points)
-        {
-            Console.WriteLine();
-
-            int m = grid.GetLength(0);
-            int n = grid.GetLength(1);
-
-            for (int i = 0; i < m; i++)
-            {
-                Console.Write("|");
-                for (int j = 0; j < n; j++)
-                {
-                    PrintDieFace(grid[i, j]);
-                }
-                Console.WriteLine();
-            }
-
-            Console.WriteLine();
-            Console.WriteLine($"Enter a word from the grid to score points! (current score: {points})");
-            Console.WriteLine("Enter 'START OVER' for a new grid");
-            Console.WriteLine();
-        }
-
-        static void PrintDieFace(string letters)
-        {
-            if (letters == null)
-            {
-                letters = " ";
-            }
-            if (letters.Length == 1)
-            {
-                letters = $"{letters} ";
-            }
-            Console.Write($"  {letters} |");
         }
     }
 }
