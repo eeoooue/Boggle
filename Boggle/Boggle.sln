@@ -3,17 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BGL-Library", "BGL-Library\BGL-Library.csproj", "{1BF298BF-4F1D-4C61-ABF6-06CE3705B971}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MudBoggle", "MudBoggle\MudBoggle.csproj", "{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibBoggle", "LibBoggle\LibBoggle.csproj", "{1EB04E68-ABB1-4B63-925D-250D88A8084D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggleCLI", "BoggleCLI\BoggleCLI.csproj", "{0B6F1BBD-E667-4C35-9333-2BE3BCAE1C49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggleWPF", "BoggleWPF\BoggleWPF.csproj", "{FE1DFAEF-8C9A-45AE-87D0-CDF377AEC9F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoggleBLS", "BoggleBLS\BoggleBLS.csproj", "{1DA095BD-2352-4E77-92F8-DE2D88151F08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BF298BF-4F1D-4C61-ABF6-06CE3705B971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BF298BF-4F1D-4C61-ABF6-06CE3705B971}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BF298BF-4F1D-4C61-ABF6-06CE3705B971}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BF298BF-4F1D-4C61-ABF6-06CE3705B971}.Release|Any CPU.Build.0 = Release|Any CPU
-		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05AE20A6-3EAE-40BB-B6F6-C42CE8FC9C43}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EB04E68-ABB1-4B63-925D-250D88A8084D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,10 +27,6 @@ Global
 		{FE1DFAEF-8C9A-45AE-87D0-CDF377AEC9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE1DFAEF-8C9A-45AE-87D0-CDF377AEC9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE1DFAEF-8C9A-45AE-87D0-CDF377AEC9F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1DA095BD-2352-4E77-92F8-DE2D88151F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1DA095BD-2352-4E77-92F8-DE2D88151F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1DA095BD-2352-4E77-92F8-DE2D88151F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1DA095BD-2352-4E77-92F8-DE2D88151F08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
